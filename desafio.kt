@@ -10,10 +10,11 @@ data class Formacao(val nome: String, val nivel: Nivel ,var conteudos: List<Cont
 
     val inscritos = mutableListOf<Usuario>()
     
-    fun matricular(usuario: Usuario) {
+    fun matricular(vararg users: Usuario) {
         //TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-        if(!inscritos.contains(usuario))
-			inscritos.add(usuario)
+        for (u in users){
+            inscritos.add(u)	
+        }
     }
     override fun toString(): String {
         return "[Formacao: ${this.nome}][nivel: ${this.nivel}][conteudos: $conteudos}][inscritos: ${this.inscritos}]"
@@ -31,8 +32,7 @@ fun main() {
     val DIO = Formacao("TI", Nivel.INTERMEDIARIO, conteudos)
     
     DIO.matricular(Usuario("Sherlock Homes"))
-    DIO.matricular(Usuario("Anakin skywalker"))
-    DIO.matricular(Usuario("Cebolinha"))
+    DIO.matricular(Usuario("Anakin skywalker"),Usuario("Cebolinha"))
     println(DIO)
     
 }
